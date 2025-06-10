@@ -29,7 +29,7 @@ public:
    //+------------------------------------------------------------------+
    //|                                                                  |
    //+------------------------------------------------------------------+
-   double            getFuncionDensidad(double Z)//(double U, double ds, double x)
+   double           getFuncionDensidad(double Z)//(double U, double ds, double x)
      {
 
 
@@ -47,41 +47,8 @@ public:
       return MathFloor(NormalizeDouble((densidad/100.0),3)*100);
      }
   
-   //+------------------------------------------------------------------+
-   //|                                                                  |
-   //+------------------------------------------------------------------+
-   double            getPointMax(int numBarras)
-     {
-      double max;
-      double arrayMax[];
-      ArrayResize(arrayMax,100000000,100000000);
-      ArrayInitialize(arrayMax,EMPTY_VALUE);
-
-      for(int i=0;i<numBarras;i++)
-        {
-         arrayMax[i] = iHigh(_Symbol,PERIOD_CURRENT,i);
-         max = ArrayMaximum(arrayMax,0,numBarras);
-        }
-      ArrayFree(arrayMax);
-      return max;
-
-     }
 
 
-
-
-
-
-   //---
-   double            getPointMin(int numBarras)
-     {
-      double min;
-      for(int j=0;j<numBarras;j++)
-        {
-
-        }
-      return min;
-     }
 
 
                      GestorMatematico();
