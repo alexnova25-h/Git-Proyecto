@@ -11,10 +11,11 @@ class CIsNewBarra
 private:
    string            m_Simbolo;
    ENUM_TIMEFRAMES   m_Frames;
+   datetime          m_lastBar;
 
 public:
 
-   void              setNewBarr(string simbolo,ENUM_TIMEFRAMES frame,int shift);
+   void              CIsNewBarra(string simbolo,ENUM_TIMEFRAMES frame,int shift);
    bool              getIsNewBar()     {  return m_newBar;}
                      CIsNewBarra();
                     ~CIsNewBarra();
@@ -26,15 +27,15 @@ protected:
 //+------------------------------------------------------------------+
 //|                                                                  |
 //+------------------------------------------------------------------+
-void CIsNewBarra::setNewBarr(string simbolo,ENUM_TIMEFRAMES frame, int shift)
+void CIsNewBarra::CIsNewBarra(string simbolo,ENUM_TIMEFRAMES frame, int shift)
   {
    m_Simbolo = simbolo;
    m_Frames = frame;
    m_newBar=false;
-   datetime i_time= iTime(m_Simbolo,m_Frames,shift);
-   if(m_last_time!=i_time)
+   datetime  currentBar = iTime(m_Simbolo,m_Frames,shift);
+   if(currentBar != m_lastBar)
      {
-      m_last_time=i_time;
+      m_lastBar = currentBar;
       m_newBar=true;
      }
    datetime time = TimeCurrent();
